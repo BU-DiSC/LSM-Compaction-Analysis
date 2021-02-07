@@ -1,32 +1,13 @@
-## RocksDB: A Persistent Key-Value Store for Flash and RAM Storage
+This repository contains the modified version of RocksDB which contains additional compaction strategies and was used to run the experiments for our latest work: "Constructing and Analyzing the LSM Compaction Design Space". 
+For our analysis and experimentation, we select nine representative compaction strategies that are prevalent in production and academic LSM-based systems. These strategies capture the wide variety of the possible compaction designs. We codify and present these candidate compaction strategies in Table 2. Full represents the classical compaction strategy for leveled LSM- trees that compacts two consecutive levels upon invocation. LO+1 and LO+2 denote two partial compaction routines that choose a file for compaction with the smallest overlap with files in the parent (i + 1) and grandparent (i + 2) level, respectively. RR chooses files for compaction in a round-robin fashion from each level. Cold and Old are read-friendly compaction strategies that mark the coldest and oldest file(s) in a level for compaction, respectively. TSD and TSA are delete-driven compaction strategies with triggers and data movement policies that are determined by the density of tombstones and the age of the oldest tombstone contained in a file, respectively. Finally, Tier represents the variant of tiering compaction with a trigger of space amplification.
 
-[![CircleCI Status](https://circleci.com/gh/facebook/rocksdb.svg?style=svg)](https://circleci.com/gh/facebook/rocksdb)
-[![TravisCI Status](https://travis-ci.org/facebook/rocksdb.svg?branch=master)](https://travis-ci.org/facebook/rocksdb)
-[![Appveyor Build status](https://ci.appveyor.com/api/projects/status/fbgfu0so3afcno78/branch/master?svg=true)](https://ci.appveyor.com/project/Facebook/rocksdb/branch/master)
-[![PPC64le Build Status](http://140.211.168.68:8080/buildStatus/icon?job=Rocksdb)](http://140.211.168.68:8080/job/Rocksdb)
+To run our experiments we also implemented our own workload generator: https://github.com/BU-DiSC/K-V-Workload-Generator
+To generate a workload, simply Make and run ./load_gen with the desired parameters. These include: Number of inserts, updates, deletes, updates, point & range lookups, distribution styles, etc. 
 
-RocksDB is developed and maintained by Facebook Database Engineering Team.
-It is built on earlier work on [LevelDB](https://github.com/google/leveldb) by Sanjay Ghemawat (sanjay@google.com)
-and Jeff Dean (jeff@google.com)
+To run a spimple experiment you can follow this simple guide:
 
-This code is a library that forms the core building block for a fast
-key-value server, especially suited for storing data on flash drives.
-It has a Log-Structured-Merge-Database (LSM) design with flexible tradeoffs
-between Write-Amplification-Factor (WAF), Read-Amplification-Factor (RAF)
-and Space-Amplification-Factor (SAF). It has multi-threaded compactions,
-making it especially suitable for storing multiple terabytes of data in a
-single database.
-
-Start with example usage here: https://github.com/facebook/rocksdb/tree/master/examples
-
-See the [github wiki](https://github.com/facebook/rocksdb/wiki) for more explanation.
-
-The public interface is in `include/`.  Callers should not include or
-rely on the details of any other header files in this package.  Those
-internal APIs may be changed without warning.
-
-Design discussions are conducted in https://www.facebook.com/groups/rocksdb.dev/ and https://rocksdb.slack.com/
-
-## License
-
-RocksDB is dual-licensed under both the GPLv2 (found in the COPYING file in the root directory) and Apache 2.0 License (found in the LICENSE.Apache file in the root directory).  You may select, at your option, one of the above-listed licenses.
+First, Make and run the workload generator. A simple command would be: ./load_gen -I10000 -Q3000
+This will generate a workload with 10000 inserts and 3000 queries on existing keys. 
+Then, move the workload.txt file in LSM-Compaction-Analysis/examples/__working_branch/ where our API resides. 
+To run the workload, just Make and run ./working_version. Before that make sure that you have also compiled RocksDB. To do that navigate to LSM-Compaction-Analysis/ and run $make static_lib
+At the end of the experiment you should be able to see a newly created log_home folder that contains all the results. More specifically, the output.csv file should contain all the results. To interpret this file, you also need to have a look at the tuple_map.txt file here https://github.com/BU-DiSC/LSM-Compaction-Analysis/blob/master/examples/__working_branch/tuple_map.txt. 
