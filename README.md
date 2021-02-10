@@ -1,6 +1,7 @@
-<H1> About </H1>
+<H1> Experimental codebase for "Constructing and Analyzing the LSM Compaction Design Space" </H1>
 
-This repository contains the modified version of RocksDB which contains additional compaction strategies and was used to run the experiments for our latest work: "Constructing and Analyzing the LSM Compaction Design Space". 
+This repository contains the modified version of RocksDB which contains additional compaction strategies and was used to run the experiments for our latest work: "Constructing and Analyzing the LSM Compaction Design Space". You can access a [technical report here](https://disc-projects.bu.edu/documents/DiSC-TR-LSM-Compaction-Analysis.pdf).
+
 For our analysis and experimentation, we select nine representative compaction strategies that are prevalent in production and academic LSM-based systems. These strategies capture the wide variety of the possible compaction designs. We codify and present these candidate compaction strategies in Table 2. Full represents the classical compaction strategy for leveled LSM- trees that compacts two consecutive levels upon invocation. LO+1 and LO+2 denote two partial compaction routines that choose a file for compaction with the smallest overlap with files in the parent (i + 1) and grandparent (i + 2) level, respectively. RR chooses files for compaction in a round-robin fashion from each level. Cold and Old are read-friendly compaction strategies that mark the coldest and oldest file(s) in a level for compaction, respectively. TSD and TSA are delete-driven compaction strategies with triggers and data movement policies that are determined by the density of tombstones and the age of the oldest tombstone contained in a file, respectively. Finally, Tier represents the variant of tiering compaction with a trigger of space amplification.
 
 <H1> The workload generator </H1>
