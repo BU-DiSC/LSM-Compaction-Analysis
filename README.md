@@ -25,6 +25,13 @@ $./load_gen -I10000 -Q3000
 ```
 
 This will generate a workload with 10000 inserts and 3000 queries on existing keys. 
-Then, move the workload.txt file in LSM-Compaction-Analysis/examples/__working_branch/ where our API resides. 
-To run the workload, just Make and run $./working_version. Before that make sure that you have also compiled RocksDB. To do that navigate to LSM-Compaction-Analysis/ and run $make static_lib
+Then, move the newly generated workload.txt file in LSM-Compaction-Analysis/examples/__working_branch/ where our API resides. 
+To run the workload, just give:
+
+```
+make
+./working_version
+```
+
+Before that make sure that you have also compiled RocksDB. To do that navigate to LSM-Compaction-Analysis/ and run $make static_lib
 At the end of the experiment you should be able to see a newly created log_home folder that contains all the results. More specifically, the output.csv file should contain all the results. To interpret this file, you also need to have a look at the tuple_map.txt file here https://github.com/BU-DiSC/LSM-Compaction-Analysis/blob/master/examples/__working_branch/tuple_map.txt. 
