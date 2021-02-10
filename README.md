@@ -6,7 +6,14 @@ For our analysis and experimentation, we select nine representative compaction s
 
 <H1> Workload generator </H1>
 To run our experiments we also implemented our own workload generator: https://github.com/BU-DiSC/K-V-Workload-Generator
-To generate a workload, simply give `make` and run `./load_gen` with the desired parameters. These include: Number of inserts, updates, deletes, updates, point & range lookups, distribution styles, etc. 
+To generate a workload, simply give 
+
+```
+make
+./load_gen
+```
+
+with the desired parameters. These include: Number of inserts, updates, deletes, updates, point & range lookups, distribution styles, etc. 
 
 <H1> Quck How-To </H1>
 To run a spimple experiment you can follow this simple guide:
