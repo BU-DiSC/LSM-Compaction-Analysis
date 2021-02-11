@@ -2,7 +2,7 @@
 
 This repository is the modified version of RocksDB which contains additional compaction strategies and was used to run the experiments for our latest work: "Constructing and Analyzing the LSM Compaction Design Space". You can access a [technical report here](https://disc-projects.bu.edu/documents/DiSC-TR-LSM-Compaction-Analysis.pdf). This work was submitted to PVLDB 2021.
 
-The modified files are listed below:
+The modified file along with their location are listed below:
 
 ```
 > external_sst_file_ingestion_job.cc db/ 
