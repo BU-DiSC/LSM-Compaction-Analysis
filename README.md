@@ -60,7 +60,7 @@ More options are available. Type:
 
 for more details.
 
-This will generate a workload with 10000 inserts and 3000 queries on existing keys. 
+This will generate a workload with 10000 inserts and 3000 point-queries on existing keys. 
 Then, move the newly generated workload.txt file in LSM-Compaction-Analysis/examples/__working_branch/ where our API resides. 
 
 After that, make sure that you have also compiled RocksDB. To do that navigate to LSM-Compaction-Analysis/ and run:
