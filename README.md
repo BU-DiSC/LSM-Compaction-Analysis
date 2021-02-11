@@ -4,6 +4,7 @@ This repository is the modified version of RocksDB which contains additional com
 
 The modified files are listed below:
 
+```
 > external_sst_file_ingestion_job.cc db/ 
 > flush_job.cc db/ 
 > import_column_family_job.cc db/ 
@@ -27,7 +28,7 @@ The modified files are listed below:
 > metadata.h include/rocksdb/
 > portal.h java/rocksjni/
 > options_helper.cc options/
-
+```
 
 For our analysis and experimentation, we select nine representative compaction strategies that are prevalent in production and academic LSM-based systems. These strategies capture the wide variety of the possible compaction designs. We codify and present these candidate compaction strategies in Table 2. Full represents the classical compaction strategy for leveled LSM- trees that compacts two consecutive levels upon invocation. LO+1 and LO+2 denote two partial compaction routines that choose a file for compaction with the smallest overlap with files in the parent (i + 1) and grandparent (i + 2) level, respectively. RR chooses files for compaction in a round-robin fashion from each level. Cold and Old are read-friendly compaction strategies that mark the coldest and oldest file(s) in a level for compaction, respectively. TSD and TSA are delete-driven compaction strategies with triggers and data movement policies that are determined by the density of tombstones and the age of the oldest tombstone contained in a file, respectively. Finally, Tier represents the variant of tiering compaction with a trigger of space amplification.
 
@@ -43,7 +44,7 @@ make
 with the desired parameters. These include: Number of inserts, updates, deletes, point & range lookups, distribution styles, etc. 
 
 <H1> Quck How-To </H1>
-To run a spimple experiment you can follow this simple guide:
+To run a simple experiment you can follow this guide:
 
 First, clone the workload generator reposirtory and generate a workload. A simple command would be: 
 
