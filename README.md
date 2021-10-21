@@ -47,7 +47,7 @@ After that, make sure that you have also compiled RocksDB. To do that navigate t
 make static_lib
 ```
 
-To run the workload, just give:
+To run the workload, you need to go to examples/__working_branch/ directory and just give:
 
 ```
 make
