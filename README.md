@@ -39,7 +39,7 @@ This will generate a workload with 10000 inserts and 3000 point-queries on exist
 Then, move the newly generated workload.txt file in LSM-Compaction-Analysis/examples/\_\_working_branch/ where our API resides. Make sure that the LSM-Compaction-Analysis and the K-V-Workload-Generator repositories are located in the same path.
 
 ```
-cp workload.txt ../LSM-Compaction-Analysis/examples/__working_version/
+cp workload.txt ../LSM-Compaction-Analysis/examples/__working_branch/
 ```
 
 After that, make sure that you have also compiled RocksDB. To do that navigate to LSM-Compaction-Analysis/ and run:
